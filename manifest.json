@@ -1,0 +1,38 @@
+{
+  "manifest_version": 3,
+  "name": "INIAD MOOCs USDX",
+  "version": "0.1.0",
+  "description": "",
+
+  "action": {
+    "default_popup": "index.html"
+  },
+
+  "background": {
+    "service_worker": "src/background.ts",
+    "type": "module"
+  },
+  "content_scripts": [
+  {
+    "matches": ["https://moocs.iniad.org/courses"],
+    "js": ["src/menuContent.ts"]
+  },
+  {
+    "matches": ["https://moocs.iniad.org/courses/**/*"],
+    "permissions": ["activeTab", "scripting"],
+    "js": ["src/courseContent.ts"]
+  }
+],
+  "web_accessible_resources": [
+    {
+      "resources": ["*.png",
+      "*.svg",
+      "*.html",
+      "src/event/**/pic/*.png",
+      "src/effect/pic/*.png",
+      "assets/*"],
+      "matches": ["https://moocs.iniad.org/*"]
+    }
+  ],
+  "permissions": []
+}
